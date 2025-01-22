@@ -6,12 +6,13 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 router.post('/signup', (req, res) => {
-    let { name, email, password } = req.body;
+    let { name, email, password, signature } = req.body;
     name = name.trim();
     email = email.trim();
     password = password.trim();
+    signature = signature.trim();
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !signature) {
         res.json({
             status: 'error',
             message: 'Invalid form submission'
@@ -46,7 +47,7 @@ router.post('/signup', (req, res) => {
             else {
                 const saltRounds = 10;
                 bcrypt.hash(password, saltRounds).then(hashPassword => {
-                    const user = new User({ name, email, password: hashPassword });
+                    const user = new User({ name, email, password: hashPassword, signature });
                     user.save().then(() => {
                         res.json({
                             status: 'success',
