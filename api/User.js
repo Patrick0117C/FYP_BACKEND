@@ -40,7 +40,7 @@ const compareSignatures = (signature1, signature2) => {
         ])
         .then(() => {
             // Execute the Python script
-            exec(`C:/Users/Patri/anaconda3/python.exe "${pythonScriptPath}" "${signature1Path}" "${signature2Path}"`, (error, stdout, stderr) => {
+            exec(`python3 "${pythonScriptPath}" "${signature1Path}" "${signature2Path}"`, (error, stdout, stderr) => {
                 // Cleanup temporary files after execution
                 fs.unlink(signature1Path, (err) => { if (err) console.error(`Error deleting ${signature1Path}:`, err); });
                 fs.unlink(signature2Path, (err) => { if (err) console.error(`Error deleting ${signature2Path}:`, err); });
