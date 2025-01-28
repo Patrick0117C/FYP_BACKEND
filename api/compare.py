@@ -12,7 +12,7 @@ def extract_features(image):
     ])
     
     image_tensor = preprocess(image).unsqueeze(0)
-    model = models.resnet152(pretrained=True)
+    model = models.resnet18(weights='IMAGENET1K_V1')
     model.eval()
     
     with torch.no_grad():
