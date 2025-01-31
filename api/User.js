@@ -103,7 +103,10 @@ router.post('/signup', (req, res) => {
                         res.json({
                             status: 'success',
                             message: 'User created',
-                            data: data
+                            data: {
+                                name,
+                                email
+                            }
                         })
                     }).catch(err => {
                         console.log(err);
