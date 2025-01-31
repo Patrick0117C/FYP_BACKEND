@@ -88,8 +88,8 @@ router.post('/signup', (req, res) => {
         })
     }
     else {
-        User.find({ email }).then(result => {
-            if (result.length) {
+        User.find({ email }).then(data => {
+            if (data.length) {
                 res.json({
                     status: 'error',
                     message: 'Email already in use'
@@ -102,7 +102,8 @@ router.post('/signup', (req, res) => {
                     user.save().then(() => {
                         res.json({
                             status: 'success',
-                            message: 'User created'
+                            message: 'User created',
+                            data: data
                         })
                     }).catch(err => {
                         console.log(err);
